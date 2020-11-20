@@ -25,7 +25,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('test', views.test, name='test'),
+    path('home', views.home, name='home'),
+    path('help', views.help, name='help'),
     path('upload', views.upload, name='upload'),
     path('direct', views.direct, name='direct'),
     path('accounts/', include('django.contrib.auth.urls')),

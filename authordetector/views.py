@@ -8,9 +8,11 @@ from nltk import word_tokenize
 # Create your views here.
 def index(request):
     return render(request, 'index.html', { 'name': 'viikkar'})
+def home(request):
+    return render(request, 'home.html')
 
-def test(request):
-    return render(request, 'test.html')
+def help(request):
+    return render(request, 'help.html')
 
 def upload(request):
     # If the file is the anonymous file
