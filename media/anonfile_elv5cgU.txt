@@ -1,0 +1,7 @@
+Governments and others have been poisoning Tor with their own nodes since the beginning, though
+going throug Tor is great it doesn't offer you as much security as it used to. The best defense against
+this is connecting to VPN or using other methods to obscure your connection before you connect to Tor. Also
+remember traffic that's not https or encrypted over Tor is a susceptible issue with the poisoned Tor nodes.
+Also recently there was a 0-day being used in the wild for Firefox which is what the Tor browser bundle uses.
+This means that many individuals using Tor could have been compromised during this time (the most recent
+update addresses this vulnerability).
