@@ -39,7 +39,7 @@
         </div>
       </nav>
     </header>
-
+{% if user.is_authenticated %}
     <!-- Begin page content -->
     <main role="main" class="container">
       <h1 class="mt-5">Authorship Detector</h1>
@@ -68,7 +68,7 @@
             {% endblock %}
 
     </main>
-
+{% endif %}
 
 
 
