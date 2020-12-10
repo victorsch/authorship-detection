@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-from .BasicAnalysis import ngram, ngramComparison, sentenceLengthComparison
+from .BasicAnalysis import ngram, ngramComparison, sentenceLengthComparison, add_new_author, list_authors
 import nltk
 from nltk import word_tokenize
 
@@ -42,10 +42,45 @@ def direct(request):
     if request.method == 'POST':
         anontext = request.POST.get('anontext', None)
         authoratext = request.POST.get('authoratext', None)
-        ngram_pct_similarity = ngramComparison(anontext, authoratext)
-        sentence_length_pct_similarity = sentenceLengthComparison(anontext, authoratext)
+        try:
+            ngram_pct_similarity = ngramComparison(anontext, authoratext)
+            sentence_length_pct_similarity = sentenceLengthComparison(anontext, authoratext)
+        except:
+            ngram_pct_similarity = ''
+            sentence_length_pct_similarity = ''
         return render(request, 'direct.html', {
+            'ngram_pct_similarity': ngram_pct_similarity,
             'ngram_pct_similarity': ngram_pct_similarity,
             'sentence_length_pct_similarity': sentence_length_pct_similarity,
         })
     return render(request, 'direct.html')
+
+
+def addauthor(request):
+    if request.method == 'POST':
+        authoroutput = ''
+        authorname = request.POST.get('authorname', None)
+        firstsample = request.POST.get('firstsample', None)
+        secondsample = request.POST.get('secondsample', None)
+        thirdsample = request.POST.get('thirdsample', None)
+        fourthsample = request.POST.get('fourthsample', None)
+        fifthsample = request.POST.get('fifthsample', None)
+        try:
+            add_new_author(authorname, firstsample, secondsample, thirdsample, fourthsample, fifthsample)
+            print("Success!")
+            authoroutput = "Author successfully added to the database!"
+        except:
+            print("Error, unable to add author.")
+            authoroutput = "Error, Incorrect Formatting"
+
+        return render(request, 'addauthor.html', {
+            'authoroutput': authoroutput,
+        })
+    return render(request, 'addauthor.html')
+
+
+def listauthors(request):
+    authorlist = list_authors()
+    return render(request, 'listauthors.html', {
+        'authorlist': authorlist,
+    })

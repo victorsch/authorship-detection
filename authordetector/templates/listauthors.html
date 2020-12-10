@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Authors Listed in Database</h1>
+
+{% for author in authorlist %}
+    <ul>
+        <il>Name | </il>
+        <il>WPS | </il>
+        <il>CPS | </il>
+    </ul>
+    <ul>
+    {% for item in author %}
+        {% if forloop.counter == 2 or forloop.counter == 8 or forloop.counter == 9 %}
+        <il>{{ item }}</il>
+        <il>|</il>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% endfor %}
+
+
+
+{% endblock %}
